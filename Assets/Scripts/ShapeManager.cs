@@ -9,7 +9,8 @@ public class ShapeManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("MoveDown", 1f,0.25f);
+        // InvokeRepeating("MoveDown", 1f,0.25f);
+        StartCoroutine(MoveRoutine());
     }
     public void MoveLeft()
     {
@@ -44,6 +45,14 @@ public class ShapeManager : MonoBehaviour
         if (checkRotation)
         {
             transform.Rotate(0, 0, 90);
+        }
+    }
+    IEnumerator MoveRoutine()
+    {
+        while (true)
+        {
+            MoveDown();
+            yield return new WaitForSeconds(.25f);
         }
     }
 }
